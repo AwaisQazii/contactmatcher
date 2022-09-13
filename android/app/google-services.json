@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "80736244573",
+    "project_id": "contactsmatcher",
+    "storage_bucket": "contactsmatcher.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80736244573:android:5fe64b7a7b9302e354ceb4",
+        "android_client_info": {
+          "package_name": "com.example.contactmatcher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "80736244573-djqtefb283n63e34tb2t0hi3cn6fr4dj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOEQ3DcxcQynpU3fPDSyju_z1-dt0anZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "80736244573-djqtefb283n63e34tb2t0hi3cn6fr4dj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
