@@ -77,13 +77,18 @@ class _HomePageState extends State<HomePage> {
               itemCount: _contacts.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
+                // log("${_contacts[index].phones.first} phones");
+
                 return ListTile(
                   title: Text(_contacts[index].displayName),
-                  subtitle: Text(_contacts[index]
-                      .phones
-                      .first
-                      .replaceAll("+92", "0")
-                      .replaceAll("-", "")),
+                  subtitle: Text(_contacts[index].phones.isEmpty
+                      ? " NO Number"
+                      : _contacts[index]
+                          .phones
+                          .first
+                          .replaceAll("+92", "0")
+                          .replaceAll("-", "")
+                          .replaceAll(" ", "")),
                 );
               },
             ),

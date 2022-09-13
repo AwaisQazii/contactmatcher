@@ -16,7 +16,8 @@ class MatchContacts extends StatefulWidget {
 }
 
 List<Contact> contacts = [];
-List<Contact> _contacts = const [];
+List<Contact> _contacts = [];
+List<Contact> matchedContacts = [];
 
 class _MatchContactsState extends State<MatchContacts> {
   @override
@@ -39,12 +40,12 @@ class _MatchContactsState extends State<MatchContacts> {
           children: [
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: _contacts.length,
+              itemCount: matchedContacts.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(_contacts[index].displayName.toString()),
-                  subtitle: Text(_contacts[index]
+                  title: Text(matchedContacts[index].displayName.toString()),
+                  subtitle: Text(matchedContacts[index]
                       .phones
                       .first
                       .replaceAll("+92", "0")
@@ -60,35 +61,42 @@ class _MatchContactsState extends State<MatchContacts> {
 
   getData() async {
     contacts = await Services.getContacts();
-    log(contacts.toString() + "sss");
-    _contacts = _contacts.where((element) {
+    log("${contacts.first.phones.first}sss");
+    log("YEAH ${_contacts.where((element) {
+      return element.phones.contains('03002969300');
+    })}");
+    matchedContacts = _contacts.where((element) {
       for (int i = 0; i < contacts.length; i++) {
-        if (element.phones.contains(contacts[i]
-            .phones
-            .first
-            .replaceAll("+92", "0")
-            .replaceAll("-", ""))) {
-          log(contacts[i].phones.first + " name Name");
+        if (element.phones.contains(
+          contacts[i]
+              .phones
+              .first
+              .replaceAll("+92", "0")
+              .replaceAll("-", "")
+              .replaceAll(" ", ""),
+        )) {
+          log("${contacts[i].phones.first.replaceAll("+92", "0").replaceAll("-", "").replaceAll(" ", "")} name Name");
           return true;
         }
       }
       return false;
     }).toList();
 
-    for (int i = 0; i < _contacts.length; i++) {
-      Services.addData(
-          _contacts[i].displayName,
-          _contacts[i].phones.first.replaceAll("+92", "0").replaceAll("-", ""),
-          "Your phone has ${_contacts[i].phones.first.replaceAll("+92", "0").replaceAll("-", "")} with name ${_contacts[i].displayName}");
-    }
-    print('${_contacts.length} HEHE');
-    // log(contcts.length.toString());
-    // FirebaseContacts(
-    //     displayName: contacts[index].name!,
-    //     id: contacts[index].id as String,
-    //     phones: [contacts[index].number as String]);
+    log("LENGTH: ${_contacts.length} ${matchedContacts.length} ${contacts.length}");
 
-    // log("${contactss!.values.toList()} + asas ");
+    for (int i = 0; i < matchedContacts.length; i++) {
+      Services.addData(
+          matchedContacts[i].displayName,
+          matchedContacts[i]
+              .phones
+              .first
+              .replaceAll("+92", "0")
+              .replaceAll("-", "")
+              .replaceAll(" ", ""),
+          "Your phone has ${matchedContacts[i].phones.first.replaceAll("+92", "0").replaceAll("-", "").replaceAll(" ", "")} with name ${matchedContacts[i].displayName}");
+    }
+    print('${matchedContacts.length} Match Contacts');
+
     setState(() {});
   }
 }

@@ -19,13 +19,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () async {
-        //     List<Contacts> contacts = await Services.getContacts();
-        //     print('NAMEL: ${contacts.length}');
-        //   },
-        //   child: Icon(Icons.get_app),
-        // ),
         appBar: AppBar(
           centerTitle: true,
           title: const Text(" Contacts Matcher"),
