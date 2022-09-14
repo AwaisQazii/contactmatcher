@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({this.userNumber});
+  HomePage({super.key, this.userNumber});
 
   String? userNumber;
 
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       // }).toList();
       _contacts = contacts;
 
-      log(_contacts.length.toString() + " contacts");
+      log("${_contacts.length} contacts");
     } on PlatformException catch (e) {
       _text = 'Failed to get contacts:\n${e.details}';
     }
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("HOME PAGE"),
+        title: const Text("HOME PAGE"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -88,14 +88,16 @@ class _HomePageState extends State<HomePage> {
 
                 return ListTile(
                   title: Text(_contacts[index].displayName),
-                  subtitle: Text(_contacts[index].phones.isEmpty
-                      ? " NO Number"
-                      : _contacts[index]
-                          .phones
-                          .first
-                          .replaceAll("+92", "0")
-                          .replaceAll("-", "")
-                          .replaceAll(" ", "")),
+                  subtitle: Text(
+                    _contacts[index].phones.isEmpty
+                        ? " NO Number"
+                        : _contacts[index]
+                            .phones
+                            .first
+                            .replaceAll("+92", "0")
+                            .replaceAll("-", "")
+                            .replaceAll(" ", ""),
+                  ),
                 );
               },
             ),

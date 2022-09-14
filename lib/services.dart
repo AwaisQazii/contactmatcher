@@ -34,11 +34,11 @@ class Services {
       String? name, String? number, String? text, String? userNumber) async {
     DocumentReference ref = FirebaseFirestore.instance
         .collection("Contacts")
-        .doc("${userNumber} Matched Contacts ");
+        .doc("$userNumber Matched Contacts");
 
     final querySnapshot = await FirebaseFirestore.instance
         .collection('Contacts')
-        .doc("${userNumber} Matched Contacts ")
+        .doc("$userNumber Matched Contacts")
         .get();
 
     if (querySnapshot.exists) {
