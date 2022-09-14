@@ -1,4 +1,5 @@
 import 'package:contactmatcher/contacts_model.dart';
+import 'package:contactmatcher/enter_user_name.dart';
 import 'package:contactmatcher/homepage.dart';
 import 'package:contactmatcher/services.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +24,8 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           title: const Text(" Contacts Matcher"),
         ),
-        body: const HomePage(),
+        body: const NewUserScreen(),
       ),
     );
   }
-  
 }

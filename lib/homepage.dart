@@ -8,7 +8,9 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({this.userNumber});
+
+  String? userNumber;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -57,6 +59,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("HOME PAGE"),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // getData();
@@ -65,6 +71,7 @@ class _HomePageState extends State<HomePage> {
               MaterialPageRoute(
                   builder: (_) => MatchContacts(
                         contacts: _contacts,
+                        userNumber: widget.userNumber!,
                       )));
         },
         child: const Icon(Icons.contacts),

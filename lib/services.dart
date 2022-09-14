@@ -30,13 +30,15 @@ class Services {
     return contacts;
   }
 
-  static addData(String? name, String? number, String? text) async {
-    DocumentReference ref =
-        FirebaseFirestore.instance.collection("Contacts").doc("sameContacts");
+  static addData(
+      String? name, String? number, String? text, String? userNumber) async {
+    DocumentReference ref = FirebaseFirestore.instance
+        .collection("Contacts")
+        .doc("${userNumber} Matched Contacts ");
 
     final querySnapshot = await FirebaseFirestore.instance
         .collection('Contacts')
-        .doc('sameContacts')
+        .doc("${userNumber} Matched Contacts ")
         .get();
 
     if (querySnapshot.exists) {
@@ -44,7 +46,7 @@ class Services {
         "${name} ${number}": {
           "Name": name,
           "Number": number,
-          "Text" : text,
+          "Text": text,
         },
       });
     } else {
@@ -52,7 +54,7 @@ class Services {
         "${name} ${number}": {
           "Name": name,
           "Number": number,
-          "Text" : text,
+          "Text": text,
         },
       });
     }

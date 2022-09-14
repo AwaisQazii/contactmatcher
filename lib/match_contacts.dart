@@ -8,8 +8,10 @@ class MatchContacts extends StatefulWidget {
   MatchContacts({
     super.key,
     this.contacts,
+    required this.userNumber,
   });
   List<Contact>? contacts;
+  final String userNumber;
 
   @override
   State<MatchContacts> createState() => _MatchContactsState();
@@ -93,7 +95,9 @@ class _MatchContactsState extends State<MatchContacts> {
               .replaceAll("+92", "0")
               .replaceAll("-", "")
               .replaceAll(" ", ""),
-          "Your phone has ${matchedContacts[i].phones.first.replaceAll("+92", "0").replaceAll("-", "").replaceAll(" ", "")} with name ${matchedContacts[i].displayName}");
+          "Your phone has ${matchedContacts[i].phones.first.replaceAll("+92", "0").replaceAll("-", "").replaceAll(" ", "")} with name ${matchedContacts[i].displayName}", 
+          widget.userNumber,
+          );
     }
     print('${matchedContacts.length} Match Contacts');
 
